@@ -8,6 +8,11 @@ MyBatis 3.2.8
 前端页面：Freemarker框架 基于Bootstrap的免费框架 AdminLTE
 
 
+
+![登录页面效果](http://git.oschina.net/uploads/images/2017/0116/151535_7e7a6d30_614740.png "登录页面效果")
+
+![后台首页效果](http://git.oschina.net/uploads/images/2017/0116/151605_8bfc0c9b_614740.png "后台首页效果")
+
 ### 附1:通用Mapper链接地址
 http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3
 
@@ -16,10 +21,4 @@ https://github.com/pagehelper/Mybatis-PageHelper
 
 ### 附3：Generator 链接地址
 http://git.oschina.net/free/Mybatis_Utils/blob/master/MybatisGeneator/MybatisGeneator.md
-
-
-
-![登录页面效果](http://git.oschina.net/uploads/images/2017/0116/151535_7e7a6d30_614740.png "登录页面效果")
-
-![后台首页效果](http://git.oschina.net/uploads/images/2017/0116/151605_8bfc0c9b_614740.png "后台首页效果")
 
