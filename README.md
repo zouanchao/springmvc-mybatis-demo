@@ -9,3 +9,6 @@ MyBatis 3.2.8
 
 ### 附:通用Mapper链接地址
 http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3
+
+### 附：分页插件链接地址
+https://github.com/pagehelper/Mybatis-PageHelper
