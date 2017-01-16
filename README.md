@@ -1,0 +1,1 @@
+基于SpringMVC+MyBatis+通用Mapper3集成的简单DEMO
