@@ -37,6 +37,19 @@
 	</head>
 	<body>
 		<div class="wrapper">
+				<!-- Content Header (Page header) -->
+				<section id="content-header" class="content-header">
+					<h1>
+			                        系统管理
+			        <small>用户管理</small>
+			      </h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="#"><i class="fa fa-home"></i>用户管理</a>
+						</li>
+						<li class="active">用户列表</li>
+					</ol>
+				</section>
 				<!-- Main content -->
 				<section class="content main-content" id="mainContent">
 					<div class="box" style="border-top: 1px solid #ECECEC;">
@@ -45,7 +58,7 @@
 							<div class="row-fluid">
 							    <div class="pull-right">
 							        <div class="btn-group">
-							            <button type="button" class="btn btn-primary btn-sm" id="btn-add">
+							            <button type="button" class="btn btn-primary btn-sm" id="btn-add" onclick="location.href='user/toAdd'">
 							                <i class="fa fa-plus"></i> 添加
 							            </button>
 							            <button type="button" class="btn btn-primary btn-sm" id="btn-delAll">
@@ -87,8 +100,7 @@
 							</table>
 						</div>
 				</section><!-- ./end -->
-		</div>
-		<!-- ./wrapper -->
+		</div><!-- ./wrapper -->
 		<script src="static/common/js/jquery-1.11.3.min.js"></script>
 		<script src="static/adminLTE/bootstrap/js/bootstrap.min.js"></script>
 		<!-- AdminLTE App -->
@@ -153,22 +165,15 @@
 		                $("#dataTable tbody tr").removeClass('selected');
 		            }
 		        });
-		        
-		        //当前显示列表中所有复选都取消选中时，取消全选按钮的选中状态
-		        /*$("input[name='checkList']").on("click",function(){
-		        	console.log("-----------------");
-		        	//console.log($("input[name='checkList']:checked").length); 
-		        });*/
+		      
             });
             
             //处理全选按钮
             function isSelectAll(sel){
             	var flag = $(sel).is(":checked");
             	var chkLen = $("input[name='checkList']").length;
-            	console.log(chkLen);
             	if(flag){//当前复选框是选中
             		var len = $("input[name='checkList']:checked").length;//当前选中的复选框数量
-            		console.log(len);
             		if(chkLen == len){
             			$("#checkAll").prop("checked",true);
             		}
@@ -259,7 +264,7 @@
 						 },
 						 "sPaginationType" : "full_numbers",
 						 searching: false,
-						 aLengthMenu:[5],//设置一页展示10条记录  
+						 aLengthMenu:[10],//设置一页展示10条记录  
 				         "bLengthChange": false,//屏蔽tables的一页展示多少条记录的下拉列表  
 				         "processing": true, //打开数据加载时的等待效果  
 				         "bServerSide": true,//打开后台分页
@@ -279,7 +284,6 @@
 					value:searchStr
 				};
 				aoData.push(sSearch);
-				console.log(aoData);
 				$.ajax({
 					type: "post",
 					dataType:'json', //接受数据格式 
@@ -290,7 +294,6 @@
 					//ShowLoading();
 				},
 				success: function(result){
-				console.log(result);
 				    if(result.aaData==""){
 				    	alert("无相关数据,请刷新");
 					}

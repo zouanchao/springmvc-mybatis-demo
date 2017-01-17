@@ -273,7 +273,61 @@
 			<!-- ./main-sidebar -->
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
-				<iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="no" src="demo/welcome" style="margin:0 auto;width:100%;height:100%;" onLoad="initIframeHeight()"></iframe>
+				<!-- Content Header (Page header) -->
+				<section id="content-header" class="content-header">
+					<h1>
+			                        控制面板
+			        <small>控制面板</small>
+			      </h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="#"><i class="fa fa-home"></i>首页</a>
+						</li>
+						<li class="active">控制面板</li>
+					</ol>
+				</section>
+				<!-- Main content -->
+				<section class="content main-content" id="mainContent">
+					<!--
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box-header with-border">
+								<h3 class="box-title">欢迎来到AdminLTE 免费模板 </h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div id="myCarousel" class="carousel-fade carousel slide">
+											<ol class="carousel-indicators">
+												<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+												<li data-target="#myCarousel" data-slide-to="1"></li>
+												<li data-target="#myCarousel" data-slide-to="2"></li>
+											</ol>   
+											<div class="carousel-inner">
+												<div class="item active">
+													<img src="http://www.wpmomo.com/wp-content/uploads/2015/04/slider2.png" class="img-responsive carousel-img" alt="First slide">
+													<div class="carousel-caption">标题 1</div>
+												</div>
+												<div class="item">
+													<img src="http://www.wpmomo.com/wp-content/uploads/2015/04/slider2.png" class="img-responsive carousel-img" alt="Second slide">
+													<div class="carousel-caption">标题 2</div>
+												</div>
+												<div class="item">
+													<img src="http://www.wpmomo.com/wp-content/uploads/2015/04/slider2.png" class="img-responsive carousel-img" alt="Third slide">
+													<div class="carousel-caption">标题 3</div>
+												</div>
+											</div>
+											<a class="carousel-control left" href="#myCarousel"  data-slide="prev" role="button" >&lsaquo;</a>
+											<a class="carousel-control right" href="#myCarousel" data-slide="next" role="button">&rsaquo;</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					-->
+					<iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="no" src="demo/welcome" style="margin:0 auto;width:100%;height:100%;" onLoad="initIframeHeight()"></iframe>
+				</section><!-- ./end -->
 			</div>
 		</div>
 		<!-- ./wrapper -->
