@@ -13,6 +13,8 @@ MyBatis 3.2.8
 
 ![后台首页效果](http://git.oschina.net/uploads/images/2017/0116/151605_8bfc0c9b_614740.png "后台首页效果")
 
+![添加用户效果](http://git.oschina.net/uploads/images/2017/0117/145952_5e0df7ba_614740.jpeg "添加用户效果")
+
 ### 附1:通用Mapper链接地址
 http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3
 
