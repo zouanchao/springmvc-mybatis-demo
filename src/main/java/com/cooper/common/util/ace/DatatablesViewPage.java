@@ -25,7 +25,11 @@ public class DatatablesViewPage<T> {
 	
 	private Long iTotalRecords;  //总记录数
 	
+	private int iDisplayLength;//分页显示多少条
+	
 	private String sEcho;//Datatables搜索key
+	
+	private String sSearch;//搜索关键字
 	
 
 	public DatatablesViewPage() {  
@@ -71,6 +75,18 @@ public class DatatablesViewPage<T> {
 	}
 	public void setiTotalRecords(Long iTotalRecords) {
 		this.iTotalRecords = iTotalRecords;
+	}
+	public int getiDisplayLength() {
+		return iDisplayLength;
+	}
+	public void setiDisplayLength(int iDisplayLength) {
+		this.iDisplayLength = iDisplayLength;
+	}
+	public String getsSearch() {
+		return sSearch;
+	}
+	public void setsSearch(String sSearch) {
+		this.sSearch = sSearch;
 	}  
 	
 }

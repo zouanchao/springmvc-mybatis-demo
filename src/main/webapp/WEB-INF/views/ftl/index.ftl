@@ -224,7 +224,7 @@
 							</a>
 							<ul class="treeview-menu">
 								<li class="active">
-									<a href="index.html"><i class="fa fa-circle-o"></i>用户管理</a>
+									<a href="user/list" target="mainFrame"><i class="fa fa-circle-o"></i>用户管理</a>
 								</li>
 								<li>
 									<a href="index2.html"><i class="fa fa-circle-o"></i>角色管理</a>
@@ -286,7 +286,6 @@
 						<li class="active">控制面板</li>
 					</ol>
 				</section>
-
 				<!-- Main content -->
 				<section class="content main-content" id="mainContent">
 					<!--

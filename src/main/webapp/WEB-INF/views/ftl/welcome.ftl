@@ -49,6 +49,7 @@
 			<!-- 右侧主体内容显示 -->
 			<div class="main-content">
 				<div class="main-content-inner">
+				 <!--
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<ul class="breadcrumb">
 							<li>
@@ -65,7 +66,7 @@
 								</span>
 							</form>
 						</div> 
-					</div> 
+					</div> -->
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-12">
