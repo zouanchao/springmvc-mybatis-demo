@@ -68,7 +68,6 @@ public class TestDb {
 		sysUser.setUserName(username);
 		sysUser.setUserNumber("058697584");
 		sysUser.setUserType("A");
-		
 		int  m = sysUserService.save(sysUser);
 		System.out.println(m);
 	}

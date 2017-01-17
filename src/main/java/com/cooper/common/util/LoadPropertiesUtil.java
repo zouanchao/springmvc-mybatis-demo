@@ -20,7 +20,7 @@ public class LoadPropertiesUtil {
 	public LoadPropertiesUtil(){
 		super();
 	}
-	
+	 
 	/**
      * @description 采用Properties类取得属性文件对应值
      * @param propertiesFileName properties文件名，如a.properties

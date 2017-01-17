@@ -34,7 +34,6 @@ public class SysUserService extends BaseService<SysUser> {
 	@Resource
 	private SysUserMapper sysUserMapper;
 	
-	
 	/**
 	 * @Title: getUserList
 	 * @Description: 设置读数据时不要事务， 读取用户数据

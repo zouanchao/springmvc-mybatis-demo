@@ -66,6 +66,7 @@ public class JsonUtil extends ObjectMapper {
 				jgen.writeString(StringEscapeUtils.unescapeHtml4(value));
 			}
         }));
+		
 		//对日期类型处理
 		this.registerModule(new SimpleModule().addSerializer(Date.class, new JsonSerializer<Date>(){
 			@Override  

@@ -33,7 +33,7 @@ public class UserCon {
 
 	@Resource
 	private SysUserService sysUserService;//用户操作接口
-
+ 
 	/** 
 	 * @Title: toListUser 
 	 * @Description: 跳转到用户管理列表页

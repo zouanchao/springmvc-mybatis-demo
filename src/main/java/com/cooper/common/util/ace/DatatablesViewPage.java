@@ -31,7 +31,6 @@ public class DatatablesViewPage<T> {
 	
 	private String sSearch;//搜索关键字
 	
-
 	public DatatablesViewPage() {  
 
 	}

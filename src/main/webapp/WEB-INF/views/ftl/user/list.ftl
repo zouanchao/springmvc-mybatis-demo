@@ -199,7 +199,7 @@
 		                         "sNext": "后一页",
 		                         "sLast": "末页"
 		                       }
-		                  },
+		                  }, 
 		                  bAutoWidth: false,
 						  "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
 						                {"mData": 'id','sClass':'center'},
