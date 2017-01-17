@@ -54,7 +54,7 @@
 							            <button type="button" class="btn btn-primary btn-sm" id="btn-export">
 							                <i class="fa fa-sign-in"></i> 导出
 							            </button>
-							            <button type="button" class="btn btn-primary btn-sm" id="btn-re">
+							            <button type="button" class="btn btn-primary btn-sm" id="btn-refresh">
 							                <i class="fa fa-refresh"></i> 刷新
 							            </button>
 							        </div>
@@ -80,8 +80,7 @@
 							            <th>用户名</th>
 							            <th>姓名</th>
 							            <th>邮箱</th>
-							            <th最近登录IP</th>
-							            <th>最近登录时间</th>
+							            <th>创建时间</th>
 							            <th>操作</th>
 							        </tr>
 							    </thead>
@@ -122,11 +121,66 @@
 			    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
 			    return fmt;
 			}
+			
 			var tables;
+			
 		    $(function () {
+		    	//初始化表格
 		    	initTable();
+		    	
+		    	//查询
+		    	$("#btn-query").on("click",function(){
+		    		var  searchStr = $.trim($("#keyword").val());
+		    		$("#keyword").val(searchStr)
+		    		tables.draw();//查询后不需要保持分页状态，回首页
+		    	});
+		    	
+		    	//刷新表格
+		    	$("#btn-refresh").on("click",function(){
+		    		var  searchStr = $.trim($("#keyword").val());
+		    		$("#keyword").val(searchStr)
+		    		tables.draw(false);//查询后不需要保持分页状态，回首页
+		    	});
+		    	
+		    	//checkbox全选
+		        $("#checkAll").on("click",function() {
+		            if ($(this).prop("checked") === true) {
+		                $("input[name='checkList']").prop("checked", $(this).prop("checked"));
+		                //$("#dataTable tbody tr").addClass('selected');
+		                $(this).hasClass('selected')
+		            } else {
+		                $("input[name='checkList']").prop("checked", false);
+		                $("#dataTable tbody tr").removeClass('selected');
+		            }
+		        });
+		        
+		        //当前显示列表中所有复选都取消选中时，取消全选按钮的选中状态
+		        /*$("input[name='checkList']").on("click",function(){
+		        	console.log("-----------------");
+		        	//console.log($("input[name='checkList']:checked").length); 
+		        });*/
             });
             
+            //处理全选按钮
+            function isSelectAll(sel){
+            	var flag = $(sel).is(":checked");
+            	var chkLen = $("input[name='checkList']").length;
+            	console.log(chkLen);
+            	if(flag){//当前复选框是选中
+            		var len = $("input[name='checkList']:checked").length;//当前选中的复选框数量
+            		console.log(len);
+            		if(chkLen == len){
+            			$("#checkAll").prop("checked",true);
+            		}
+            	} else {//当前复选框是未选中
+            		var len = $("input[name='checkList']:checked").length;
+            		if(len < chkLen){//如果选中的复选小于所有复选，则取消全选
+            			$("#checkAll").prop("checked",false);
+            		}
+            	}
+            }
+            
+            //初始化表格
             function initTable(){
 		       tables = $("#dataTable").DataTable({
 			             "oLanguage": {//表格汉化
@@ -153,7 +207,7 @@
 					                    {"mData": 'realName'},
 					                    {"mData": 'email','sClass':'td_title'},
 					                    {"mData": 'createDate'},
-					                    {"sDefaultContent": ''}
+					                    {"mData": 'op'}
 						 ],
 						 "aoColumnDefs": [
 										{
@@ -163,7 +217,7 @@
 										    "bSearchable": false,
 										    "mRender": function (data, type, full) {
 										    	return '<label class="pos-rel">'+
-										    			'<input type="checkbox" class="ace" /> <span class="lbl"></span>'+
+										    			'<input type="checkbox" class="ace" name="checkList" onclick="isSelectAll(this)" /> <span class="lbl"></span>'+
 														'</label>';
 										    }
 									  },
@@ -180,6 +234,22 @@
 						                     }
 						                  }
 								     },
+								     {
+								    	  "aTargets": [5],
+						                  "mData": 'op',
+						                  "bSortable": false,
+						                  "bSearchable": false,
+						                  "mRender": function (data, type, full) {
+						                	 var btn_op = '<div class="action-buttons"> '+
+						     				'<a class="blue" href="javascript:void(0)" onclick="location.href=\'${domain}/resource/exam/paper/admin/form\'" title="查看明细">' +
+						    				'<i class="ace-icon fa fa-search-plus bigger-130"></i></a> '+
+						    				'<a class="green" href="javascript:void(0)" onclick="location.href=\'${domain}/resource/exam/paper/admin/edit/'+data+'\'" title="编辑"> '+
+						    				'<i class="ace-icon fa fa-pencil bigger-130"></i></a> '+
+						    				'<a class="red" href="#"><i class="ace-icon fa fa-trash-o bigger-130" title="删除"></i></a>'+
+						    				'</div>';
+						                     return btn_op;
+						                  }
+								     }
 						 ],
 						 "bFilter": true, 
 						 "aaSorting": [],
@@ -189,7 +259,7 @@
 						 },
 						 "sPaginationType" : "full_numbers",
 						 searching: false,
-						 aLengthMenu:[10],//设置一页展示10条记录  
+						 aLengthMenu:[5],//设置一页展示10条记录  
 				         "bLengthChange": false,//屏蔽tables的一页展示多少条记录的下拉列表  
 				         "processing": true, //打开数据加载时的等待效果  
 				         "bServerSide": true,//打开后台分页
@@ -198,16 +268,23 @@
 			    });
              }
              
-             /**
+            /**
 			 * 后台分页
 			 */
 			function retrieveData(sSource, aoData, fnCallback ) { 
+				$("#checkAll").prop("checked", false);
+				var  searchStr = $.trim($("#keyword").val());
+				var sSearch = {
+					name:"sSearch",
+					value:searchStr
+				};
+				aoData.push(sSearch);
 				console.log(aoData);
 				$.ajax({
 					type: "post",
 					dataType:'json', //接受数据格式 
 					cache:false,
-					data:aoData, 
+					data:aoData,  
 					url: sSource,
 					beforeSend: function(XMLHttpRequest){
 					//ShowLoading();

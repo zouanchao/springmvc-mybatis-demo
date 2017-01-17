@@ -73,7 +73,7 @@ public class JsonUtil extends ObjectMapper {
                     JsonGenerator jsonGenerator,   
                     SerializerProvider provider)  
                     throws IOException, JsonProcessingException {  
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
                 jsonGenerator.writeString(sdf.format(value));  
             }  
 		}));

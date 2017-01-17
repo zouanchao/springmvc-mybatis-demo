@@ -1,6 +1,7 @@
 package com.cooper.demo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.cooper.base.model.SysUser;
 import com.cooper.base.service.SysUserService;
 import com.cooper.common.util.IdGen;
+import com.cooper.common.util.PageUtil;
 
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
@@ -50,20 +52,20 @@ public class TestDb {
 		sysUser.setMobile("13214621359");
 		sysUser.setOfficeId(IdGen.uuid());
 		
-		String str = "admin123";  
-		String salt = "admin"; 
-		String salt2 = new SecureRandomNumberGenerator().nextBytes().toHex();
+		String username = "yaoming";  
+		String pass_mingwen = "admin";
+		String random = new SecureRandomNumberGenerator().nextBytes().toHex();
 		//内部使用MessageDigest  
-		String password = new SimpleHash("SHA-1", str, salt+salt2).toString();
+		String password = new SimpleHash("SHA-1", pass_mingwen, username+random).toString();
 		
 		sysUser.setPassword(password);
 		sysUser.setPhone("13512695869");
-		sysUser.setRealName("系统管理员");
-		sysUser.setRemarks("系统管理员");
-		sysUser.setSalt(salt+salt2);
+		sysUser.setRealName("姚明");
+		sysUser.setRemarks("篮球高手");
+		sysUser.setSalt(username+random);
 		sysUser.setUpdateBy("-1");
 		sysUser.setUpdateDate(new Date());
-		sysUser.setUserName("admin");
+		sysUser.setUserName(username);
 		sysUser.setUserNumber("058697584");
 		sysUser.setUserType("A");
 		
@@ -82,6 +84,18 @@ public class TestDb {
         sysUser = sysUserService.selectOne(sysUser);
         System.out.println(sysUser.getEmail());
         
+	}
+	
+	@Test
+	public void testSelectList(){
+		PageUtil pu = new PageUtil();
+		//设置每页显示行数，默认为10
+		pu.setPageCount(1);
+		pu.setNextPage(2);
+		List<SysUser> userList = sysUserService.getUserList(pu);
+		for (SysUser sysUser : userList) {
+			System.out.println(sysUser.getEmail()+":"+sysUser.getUserName()+":"+sysUser.getCreateDate());
+		}
 	}
 
 }
